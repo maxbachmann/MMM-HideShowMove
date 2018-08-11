@@ -34,6 +34,16 @@ Module.register('MMM-SnipsHideShow', {
       if (payload.topic.toString() === topic + 'MM_Hide' || payload.topic.toString() === topic + 'MM_Show'){
           this.sendNotification(data.message);
       }else if (payload.topic.toString() === topic + 'MM_Move'){
+        const modulename = data.module;
+        const targetRegion = data.position;
+        MM.getModules().enumerate((module) => {
+          if (module.name === modulename) {
+	          const instance = document.getElementById(module.identifier);
+	          const region = document.querySelector(`div.region.${targetRegion} div.container`);
+            region.insertBefore(instance, region.childNodes[0])
+            region.style.display = 'block';
+          }
+        });
       }
       this.loaded = true;
     }

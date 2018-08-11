@@ -40,7 +40,6 @@ module.exports = NodeHelper.create({
         title: 'MQTT Offline',
         message: 'MQTT Server is offline.'
       });
-      client.end();
     });
 
     client.on('message', function(topic, message) {
