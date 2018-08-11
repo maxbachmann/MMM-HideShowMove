@@ -9,6 +9,9 @@ To work this module requires the offline Voice Recognition Snips with the MagicM
 2. Navigate into your MagicMirror's `modules` folder and execute `git clone `. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
 3. Execute `npm install` to install the node dependencies.
 
+The installation of Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/installation).
+The installation of the App inside Snips can be done according to this [explanation](s.gitbook.io/getting-started/install-an-assistant). The app you need to add is called `MM2-HideShowMove`
+
 ## Using the module
 
 To use this module, add this to the modules array in the `config/config.js` file:
