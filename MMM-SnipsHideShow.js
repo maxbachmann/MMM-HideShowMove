@@ -12,9 +12,7 @@ Module.register('MMM-SnipsHideShow', {
 
   defaults: {
     mqttServer: '',
-    loadingText: 'Loading MQTT Data...',
     topic: 'hermes/external/MagicMirror2',
-    showTitle: false,
     interval: 300000,
   },
 
@@ -36,11 +34,6 @@ Module.register('MMM-SnipsHideShow', {
             this.sendNotification(payload.data);
         }else if (payload.topic === 'MM_Move'){
         }
-
-
-
-
-
       this.loaded = true;
     }
 
