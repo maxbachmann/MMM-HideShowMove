@@ -6,7 +6,7 @@ To work this module requires the offline Voice Recognition Snips with the MagicM
 
 ## Installation
 1. Ensure that you have the necessary libraries/clients for mqtt installed on the computer that will be running this extension.  (For example, running `sudo apt-get install mosquitto mosquitto-clients` on Debian-based distributions.)
-2. Navigate into your MagicMirror's `modules` folder and execute `git clone https://gitlab.com/MaxBachmann/mmm-snipshideshow.git`. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
+2. Navigate into your MagicMirror's `modules` folder and execute `git clone git@gitlab.com:MaxBachmann/mmm-snipshideshow.git`. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
 3. Execute `npm install` to install the node dependencies.
 4. The installation of Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/installation).
 5. The installation of the App inside Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/install-an-assistant). 
