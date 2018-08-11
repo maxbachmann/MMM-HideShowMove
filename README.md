@@ -58,7 +58,7 @@ Please keep the following in mind:
 The MIT License (MIT)
 =====================
 
-Copyright © 2016 Javier G. Ayala
+Copyright © 2018 Max Bachmann
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
