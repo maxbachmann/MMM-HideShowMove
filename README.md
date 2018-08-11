@@ -10,7 +10,7 @@ To work this module requires the offline Voice Recognition Snips with the MagicM
 3. Execute `npm install` to install the node dependencies.
 
 The installation of Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/installation).
-The installation of the App inside Snips can be done according to this [explanation](s.gitbook.io/getting-started/install-an-assistant). The app you need to add is called `MM2-HideShowMove`
+The installation of the App inside Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/install-an-assistant). The app you need to add is called `MM2-HideShowMove` (more information about it can be found [here](https://gitlab.com/MaxBachmann/Snips-MagicMirror2))
 
 ## Using the module
 
