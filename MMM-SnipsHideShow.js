@@ -29,11 +29,11 @@ Module.register('MMM-SnipsHideShow', {
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === 'MQTT_DATA') {
-      topic = 'hermes/external/MagicMirror2/';
-      data = JSON.parse(payload.data);
-      if (payload.topic === topic + 'MM_Hide' || payload.topic === topic + 'MM_Show'){
-          this.sendNotification(data.message.toString());
-      }else if (payload.topic === topic + 'MM_Move'){
+      const topic = 'hermes/external/MagicMirror2/';
+      const data = JSON.parse(payload.data.toString());
+      if (payload.topic.toString() === topic + 'MM_Hide' || payload.topic.toString() === topic + 'MM_Show'){
+          this.sendNotification(data.message);
+      }else if (payload.topic.toString() === topic + 'MM_Move'){
       }
       this.loaded = true;
     }
