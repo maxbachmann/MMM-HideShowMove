@@ -21,7 +21,7 @@ module.exports = NodeHelper.create({
     var client = mqtt.connect(payload.mqttServer);
 
     client.on('connect', function() {
-      client.subscribe(payload.topic);
+      client.subscribe('hermes/external/MagicMirror2/#');
     });
 
     client.on('error', function(error) {

@@ -12,7 +12,6 @@ Module.register('MMM-SnipsHideShow', {
 
   defaults: {
     mqttServer: '',
-    topic: 'hermes/external/MagicMirror2',
     interval: 300000,
   },
 
@@ -23,17 +22,19 @@ Module.register('MMM-SnipsHideShow', {
   },
 
   updateMqtt: function(self) {
-    self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer, topic: self.config.topic, mode: self.config.mode });
+    self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer});
     setTimeout(self.updateMqtt, self.config.interval, self);
   },
 
 
   socketNotificationReceived: function(notification, payload) {
-    if (notification === 'MQTT_DATA' && payload.topic === this.config.topic) {
-        if (payload.topic === 'MM_Hide' || payload.topic === 'MM_Show'){
-            this.sendNotification(payload.data);
-        }else if (payload.topic === 'MM_Move'){
-        }
+    if (notification === 'MQTT_DATA') {
+      topic = 'hermes/external/MagicMirror2/';
+      data = JSON.parse(payload.data);
+      if (payload.topic === topic + 'MM_Hide' || payload.topic === topic + 'MM_Show'){
+          this.sendNotification(data.message.toString());
+      }else if (payload.topic === topic + 'MM_Move'){
+      }
       this.loaded = true;
     }
 
