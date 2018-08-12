@@ -13,6 +13,12 @@ Module.register('MMM-SnipsHideShow', {
   defaults: {
     mqttServer: '',
     interval: 300000,
+    PAGEONE: ['clock'],
+    PAGETWO: ['clock'],
+    PAGETHREE: ['clock'],
+    PAGEFOUR: ['clock'],
+    PAGEFIVE: ['clock'],
+    PAGESIX: ['clock'],
   },
 
   start: function() {
@@ -26,19 +32,38 @@ Module.register('MMM-SnipsHideShow', {
     setTimeout(self.updateMqtt, self.config.interval, self);
   },
 
-
   socketNotificationReceived: function(notification, payload) {
     if (notification === 'MQTT_DATA') {
       const topic = 'hermes/external/MagicMirror2/';
       const data = JSON.parse(payload.data.toString());
       const modulename = data.module;
       if (payload.topic.toString() === topic + 'MM_Hide'){
-        if (module.name === modulename) {
-          module.hide();
+        if (modulenmame === 'ALL'){
+          MM.getModules().enumerate((module) => {
+            module.hide();
+          });
+        } else if (module.name === modulename) {
+          MM.getModules().enumerate((module) => {
+            if (module.name === modulename) {
+              module.hide();
+            }
+          });
         }
       } else  if (payload.topic.toString() === topic + 'MM_Show'){
-        if (module.name === modulename) {
-          module.show();
+        if (modulenmame.includes("PAGE")){
+          MM.getModules().enumerate((module) => {
+            if (self.config.modulename.indexOf(module) > -1) {
+              module.show();
+            }else{
+              module.hide();
+            }
+          });
+        } else if (module.name === modulename) {
+          MM.getModules().enumerate((module) => {
+            if (module.name === modulename) {
+              module.show();
+            }
+          });
         }
       }else if (payload.topic.toString() === topic + 'MM_Move'){
         const targetRegion = data.position;
