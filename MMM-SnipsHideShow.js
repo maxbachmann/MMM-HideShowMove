@@ -31,10 +31,16 @@ Module.register('MMM-SnipsHideShow', {
     if (notification === 'MQTT_DATA') {
       const topic = 'hermes/external/MagicMirror2/';
       const data = JSON.parse(payload.data.toString());
-      if (payload.topic.toString() === topic + 'MM_Hide' || payload.topic.toString() === topic + 'MM_Show'){
-          this.sendNotification(data.message);
+      const modulename = data.module;
+      if (payload.topic.toString() === topic + 'MM_Hide'){
+        if (module.name === modulename) {
+          module.hide();
+        }
+      } else  if (payload.topic.toString() === topic + 'MM_Show'){
+        if (module.name === modulename) {
+          module.show();
+        }
       }else if (payload.topic.toString() === topic + 'MM_Move'){
-        const modulename = data.module;
         const targetRegion = data.position;
         MM.getModules().enumerate((module) => {
           if (module.name === modulename) {
