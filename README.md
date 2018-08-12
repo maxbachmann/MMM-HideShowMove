@@ -34,12 +34,42 @@ The following options can be configured:
 | Option  | Description  |
 |---|---|
 | `mqttServer`  | Connection string for the server to connect to (e.g. `mqtt://localhost`) **See:** Server IP  |
+| `PAGEONE`  | modules to show on the first Page **See:** Pages |
+| `PAGETWO`  | modules to show on the second Page **See:** Pages |
+| `PAGETHREE`  | modules to show on the third Page **See:** Pages |
+| `PAGEFOUR`  | modules to show on the fourth Page **See:** Pages |
+| `PAGEFIVE`  | modules to show on the fifth Page **See:** Pages |
+| `PAGESIX`  | modules to show on the Page sixth **See:** Pages |
+| `moduleNames`  | **See:** moduleNames |
 
 ## Server IP
 
 IP adress the mqtt server snips is connected to is running on. `mqtt://localhost` when snips is running on the same device (and you do use the MQTT Broker coming with snips)
 
+## PAGES
 
+Ah list of the modulenames of the modules that get shown on the Page. You find those modulenames in the `config.js` in the format `module : \<modulename\>`.
+So the command for the config is 
+```javascript
+	moduleNames : [<modulename 1>, ... , <modulename n>, ],
+```
+
+## moduleNames
+
+Ah object with the modules that you want to react on a command. the modulenames for those modules you can find in the `config.js` in the format `module : \<modulename\>`.
+So the command for the config is 
+```javascript
+PAGE\<pagenumber\> : {
+      "ALL"       : "ALL",
+      "PAGEONE"   : "PAGEONE",
+      "PAGETWO"   : "PAGETWO",
+      "PAGETHREE" : "PAGETHREE",
+      "PAGEFOUR"  : "PAGEFOUR",
+      "PAGEFIVE"  : "PAGEFIVE",
+      "PAGESIX"   : "PAGESIX",
+	
+       \<modulename 1\>, ... , <modulename n>, ]
+```
 
 ## Dependencies
 - [mqtt](https://www.npmjs.com/package/mqtt) (installed via `npm install`)
