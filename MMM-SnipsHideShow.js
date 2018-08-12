@@ -19,6 +19,10 @@ Module.register('MMM-SnipsHideShow', {
     PAGEFOUR: ['clock'],
     PAGEFIVE: ['clock'],
     PAGESIX: ['clock'],
+
+    moduleNames: {
+      "CLOCK" : "clock",
+    }
   },
 
   start: function() {
@@ -36,7 +40,7 @@ Module.register('MMM-SnipsHideShow', {
     if (notification === 'MQTT_DATA') {
       const topic = 'hermes/external/MagicMirror2/';
       const data = JSON.parse(payload.data.toString());
-      const modulename = data.module;
+      const modulename = self.config.moduleNames[data.module];
       if (payload.topic.toString() === topic + 'MM_Hide'){
         if (modulenmame === 'ALL'){
           MM.getModules().enumerate((module) => {
@@ -52,7 +56,7 @@ Module.register('MMM-SnipsHideShow', {
       } else  if (payload.topic.toString() === topic + 'MM_Show'){
         if (modulenmame.includes("PAGE")){
           MM.getModules().enumerate((module) => {
-            if (self.config.modulename.indexOf(module) > -1) {
+            if (self.config[modulename].indexOf(module) > -1) {
               module.show();
             }else{
               module.hide();
