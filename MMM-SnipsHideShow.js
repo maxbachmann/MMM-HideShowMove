@@ -13,15 +13,26 @@ Module.register('MMM-SnipsHideShow', {
   defaults: {
     mqttServer: '',
     interval: 300000,
-    PAGEONE: ['clock'],
-    PAGETWO: ['clock'],
-    PAGETHREE: ['clock'],
-    PAGEFOUR: ['clock'],
-    PAGEFIVE: ['clock'],
-    PAGESIX: ['clock'],
+    PAGEONE: ["clock", "MMM-EyeCandy", "compliments", "calendar","newsfeed"],
+    PAGETWO: [],
+    PAGETHREE: [],
+    PAGEFOUR: [],
+    PAGEFIVE: [],
+    PAGESIX: [],
 
     moduleNames: {
-      "CLOCK" : "clock",
+      "ALL"       : "ALL",
+      "PAGEONE"   : "PAGEONE",
+      "PAGETWO"   : "PAGETWO",
+      "PAGETHREE" : "PAGETHREE",
+      "PAGEFOUR"  : "PAGEFOUR",
+      "PAGEFIVE"  : "PAGEFIVE",
+      "PAGESIX"   : "PAGESIX",
+      "CLOCK"     : "clock",
+      "CALENDAR"  : "calendar",
+      "EYECANDY"  : "MMM-EyeCandy",
+      "WEATHER"   : "weatherforecast",
+      "NEWS"      : "newsfeed"
     }
   },
 
@@ -40,13 +51,13 @@ Module.register('MMM-SnipsHideShow', {
     if (notification === 'MQTT_DATA') {
       const topic = 'hermes/external/MagicMirror2/';
       const data = JSON.parse(payload.data.toString());
-      const modulename = self.config.moduleNames[data.module];
+      const modulename = this.config.moduleNames[data.module.toString()];
       if (payload.topic.toString() === topic + 'MM_Hide'){
-        if (modulenmame === 'ALL'){
+        if (modulename === 'ALL'){
           MM.getModules().enumerate((module) => {
             module.hide();
           });
-        } else if (module.name === modulename) {
+        } else{
           MM.getModules().enumerate((module) => {
             if (module.name === modulename) {
               module.hide();
@@ -54,15 +65,15 @@ Module.register('MMM-SnipsHideShow', {
           });
         }
       } else  if (payload.topic.toString() === topic + 'MM_Show'){
-        if (modulenmame.includes("PAGE")){
+        if (modulename.includes("PAGE")){
           MM.getModules().enumerate((module) => {
-            if (self.config[modulename].indexOf(module) > -1) {
+            if (this.config[modulename.toString()].indexOf(module) > -1) {
               module.show();
             }else{
               module.hide();
             }
           });
-        } else if (module.name === modulename) {
+        } else{
           MM.getModules().enumerate((module) => {
             if (module.name === modulename) {
               module.show();
