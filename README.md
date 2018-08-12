@@ -40,7 +40,6 @@ The following options can be configured:
 | `PAGEFOUR`  | modules to show on the fourth Page **See:** Pages |
 | `PAGEFIVE`  | modules to show on the fifth Page **See:** Pages |
 | `PAGESIX`  | modules to show on the Page sixth **See:** Pages |
-| `moduleNames`  | **See:** moduleNames |
 
 ## Server IP
 
@@ -48,27 +47,27 @@ IP adress the mqtt server snips is connected to is running on. `mqtt://localhost
 
 ## PAGES
 
-Ah list of the modulenames of the modules that get shown on the Page. You find those modulenames in the `config.js` in the format `module : \<modulename\>`.
+Ah list of the modulenames of the modules that get shown on the Page. You find those modulenames in the `config.js` in the format `module : <modulename>`.
 So the command for the config is 
 ```javascript
-	moduleNames : [<modulename 1>, ... , <modulename n>, ],
+	PAGE<pagenumber>: [<modulename 1>, ... , <modulename n>, ],
 ```
 
 ## moduleNames
 
-Ah object with the modules that you want to react on a command. the modulenames for those modules you can find in the `config.js` in the format `module : \<modulename\>`.
-So the command for the config is 
+An object with the modules that you want to react on a command. The modulenames for those modules you can find in the `config.js` in the format `module : <modulename>`. Then simply change the `moduleNames object` in `MMM-SnipsHideShow.js`
+The Format is 
 ```javascript
-PAGE\<pagenumber\> : {
-      "ALL"       : "ALL",
-      "PAGEONE"   : "PAGEONE",
-      "PAGETWO"   : "PAGETWO",
-      "PAGETHREE" : "PAGETHREE",
-      "PAGEFOUR"  : "PAGEFOUR",
-      "PAGEFIVE"  : "PAGEFIVE",
-      "PAGESIX"   : "PAGESIX",
-	
-       \<modulename 1\>, ... , <modulename n>, ]
+ moduleNames : {
+   "ALL"       : "ALL",
+   "PAGEONE"   : "PAGEONE",
+   "PAGETWO"   : "PAGETWO",
+   "PAGETHREE" : "PAGETHREE",
+   "PAGEFOUR"  : "PAGEFOUR",
+   "PAGEFIVE"  : "PAGEFIVE",
+   "PAGEFIVE"  : "PAGEFIVE",
+   <command>   : <moduleName of module that should react>,
+   }
 ```
 
 ## Dependencies
