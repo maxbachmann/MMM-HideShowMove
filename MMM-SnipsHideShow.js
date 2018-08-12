@@ -12,29 +12,32 @@ Module.register('MMM-SnipsHideShow', {
 
   defaults: {
     mqttServer: '',
-    interval: 300000,
     PAGEONE: ["clock", "MMM-EyeCandy", "compliments", "calendar","newsfeed"],
     PAGETWO: [],
     PAGETHREE: [],
     PAGEFOUR: [],
     PAGEFIVE: [],
     PAGESIX: [],
-
-    moduleNames: {
-      "ALL"       : "ALL",
-      "PAGEONE"   : "PAGEONE",
-      "PAGETWO"   : "PAGETWO",
-      "PAGETHREE" : "PAGETHREE",
-      "PAGEFOUR"  : "PAGEFOUR",
-      "PAGEFIVE"  : "PAGEFIVE",
-      "PAGESIX"   : "PAGESIX",
-      "CLOCK"     : "clock",
-      "CALENDAR"  : "calendar",
-      "EYECANDY"  : "MMM-EyeCandy",
-      "WEATHER"   : "weatherforecast",
-      "NEWS"      : "newsfeed"
-    }
   },
+
+  moduleNames: {
+    "ALL"       : "ALL",
+    "PAGEONE"   : "PAGEONE",
+    "PAGETWO"   : "PAGETWO",
+    "PAGETHREE" : "PAGETHREE",
+    "PAGEFOUR"  : "PAGEFOUR",
+    "PAGEFIVE"  : "PAGEFIVE",
+    "PAGESIX"   : "PAGESIX",
+    "CLOCK"     : "clock",
+    "CALENDAR"  : "calendar",
+    "EYECANDY"  : "MMM-EyeCandy",
+    "WEATHER"   : "weatherforecast",
+    "NEWS"      : "newsfeed"
+  },
+
+  interval: 300000,
+
+
 
   start: function() {
     Log.info('Starting module: ' + this.name);
@@ -44,14 +47,14 @@ Module.register('MMM-SnipsHideShow', {
 
   updateMqtt: function(self) {
     self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer});
-    setTimeout(self.updateMqtt, self.config.interval, self);
+    setTimeout(self.updateMqtt, self.interval, self);
   },
 
   socketNotificationReceived: function(notification, payload) {
     if (notification === 'MQTT_DATA') {
       const topic = 'hermes/external/MagicMirror2/';
       const data = JSON.parse(payload.data.toString());
-      const modulename = this.config.moduleNames[data.module.toString()];
+      const modulename = this.moduleNames[data.module.toString()];
       if (payload.topic.toString() === topic + 'MM_Hide'){
         if (modulename === 'ALL'){
           MM.getModules().enumerate((module) => {

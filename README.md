@@ -67,7 +67,7 @@ The Format is
    "PAGEFIVE"  : "PAGEFIVE",
    "PAGEFIVE"  : "PAGEFIVE",
    <command>   : <moduleName of module that should react>,
-   }
+   },
 ```
 
 ## Dependencies
