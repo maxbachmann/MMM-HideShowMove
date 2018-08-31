@@ -11,7 +11,6 @@
 Module.register('MMM-SnipsHideShow', {
 
   defaults: {
-    mqttServer: '',
     PAGEONE: ["clock", "MMM-EyeCandy", "compliments", "calendar","newsfeed"],
     PAGETWO: [],
     PAGETHREE: [],
@@ -66,27 +65,17 @@ Module.register('MMM-SnipsHideShow', {
     "WEATHER"     : "weatherforecast"
   },
 
-  interval: 300000,
-
-
-
   start: function() {
     Log.info('Starting module: ' + this.name);
-    this.loaded = false;
-    this.updateMqtt(this);
+    this.loaded = true;
   },
 
-  updateMqtt: function(self) {
-    self.sendSocketNotification('MQTT_SERVER', { mqttServer: self.config.mqttServer});
-    setTimeout(self.updateMqtt, self.interval, self);
-  },
-
-  socketNotificationReceived: function(notification, payload) {
-    if (notification === 'MQTT_DATA') {
-      const topic = 'hermes/external/MagicMirror2/';
-      const data = JSON.parse(payload.data.toString());
+  NotificationReceived: function(notification, payload) {
+    const topic = 'SnipsBridge/external/MagicMirror2/';
+    if (notification.includes(topic)) {
+      const data = JSON.parse(payload.toString());
       const modulename = this.moduleNames[data.module.toString()];
-      if (payload.topic.toString() === topic + 'MM_Hide'){
+      if (notification === topic + 'MM_Hide'){
         if (modulename === 'ALL'){
           MM.getModules().enumerate((module) => {
             module.hide();
@@ -98,7 +87,7 @@ Module.register('MMM-SnipsHideShow', {
             }
           });
         }
-      } else  if (payload.topic.toString() === topic + 'MM_Show'){
+      } else  if (notification === topic + 'MM_Show'){
         if (modulename.includes("PAGE")){
           MM.getModules().enumerate((module) => {
             if (this.config[modulename.toString()].indexOf(module) > -1) {
@@ -114,7 +103,7 @@ Module.register('MMM-SnipsHideShow', {
             }
           });
         }
-      }else if (payload.topic.toString() === topic + 'MM_Move'){
+      }else if (notification === topic + 'MM_Move'){
         const targetRegion = data.position;
         MM.getModules().enumerate((module) => {
           if (module.name === modulename) {
@@ -125,11 +114,6 @@ Module.register('MMM-SnipsHideShow', {
           }
         });
       }
-      this.loaded = true;
     }
-
-    if (notification === 'ERROR') {
-      this.sendNotification('SHOW_ALERT', payload);
-    }
-  },
+  }
 });
