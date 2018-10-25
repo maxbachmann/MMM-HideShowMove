@@ -3,8 +3,7 @@
 This is an extension for the [MagicMirror²](https://github.com/MichMich/MagicMirror).  It provides the ability to use it with the offline voice recognition Snips to Hide, Show and Move modules
 To work this module requires the module Snips-MM2-Bridge and the offline Voice Recognition Snips with the MagicMirrorHideShow App and is currently only avaible in German. A explanation on how to install Snips and the App is included in the installation Guide.
 
-
-[[embed url=https://www.youtube.com/watch?v=09XWlDiJ6dM]]
+[demonstration video german](https://www.youtube.com/watch?v=09XWlDiJ6dM)
 
 
 ## Installation
