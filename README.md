@@ -4,6 +4,9 @@ This is an extension for the [MagicMirror²](https://github.com/MichMich/MagicMi
 To work this module requires the module Snips-MM2-Bridge and the offline Voice Recognition Snips with the MagicMirrorHideShow App and is currently only avaible in German. A explanation on how to install Snips and the App is included in the installation Guide.
 
 
+[[embed url=https://www.youtube.com/watch?v=09XWlDiJ6dM]]
+
+
 ## Installation
 1. Follow the instructions for [Snips-MM2-Bridge](https://gitlab.com/CaptnsTech/snips-mm2-bridge)
 2. Navigate into your MagicMirror's `modules` folder and execute `git clone https://gitlab.com/CaptnsTech/mmm-snipshideshow.git`. A new folder will appear, likely called `mmm-snipshideshow`.  Navigate into it.
