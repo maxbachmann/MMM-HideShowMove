@@ -4,7 +4,7 @@ This is an extension for the [MagicMirror²](https://github.com/MichMich/MagicMi
 To work this module requires the module Snips-MM2-Bridge and the offline Voice Recognition Snips with the MagicMirrorHideShow App and is currently only avaible in German. A explanation on how to install Snips and the App is included in the installation Guide.
 
 
-[[embed url=https://www.youtube.com/watch?v=09XWlDiJ6dM]]
+[<img src="http://www.google.com.au/images/nav_logo7.png">](http://google.com.au/)
 
 
 ## Installation
