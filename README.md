@@ -8,7 +8,7 @@ To work this module requires the module Snips-MM2-Bridge and the offline Voice R
 
 ## Installation
 1. Follow the instructions for [Snips-MM2-Bridge](https://gitlab.com/CaptnsTech/snips-mm2-bridge)
-2. Navigate into your MagicMirror's `modules` folder and execute `git clone https://gitlab.com/CaptnsTech/mmm-snipshideshow.git`. A new folder will appear, likely called `mmm-snipshideshow`.  Navigate into it.
+2. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/maxbachmann/MMM-SnipsHideShow.git`. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
 3. Execute `npm install` to install the node dependencies.
 5. The installation of the App inside Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/install-an-assistant). 
 6. The app you need to add is called `MM2-HideShowMove` (more information about it can be found [here](https://gitlab.com/CaptnsTech/Snips-MagicMirror2))
@@ -74,8 +74,8 @@ Please keep the following in mind:
 
 - **Bug Reports**:  Make sure you're running the latest version. If the issue(s) still persist: please open a clearly documented issue with a clear title.
 - **Minor Bug Fixes**: Please send a pull request with a clear explanation of the issue or a link to the issue it solves.
-- **Major Bug Fixes**: please discuss your approach in an GitLab issue before you start to alter a big part of the code.
-- **New Features**: please please discuss in a GitLab issue before you start to alter a big part of the code. Without discussion upfront, the pull request will not be accepted / merged.
+- **Major Bug Fixes**: please discuss your approach in an issue before you start to alter a big part of the code.
+- **New Features**: please please discuss in a issue before you start to alter a big part of the code. Without discussion upfront, the pull request will not be accepted / merged.
 
 
 ## Planned
