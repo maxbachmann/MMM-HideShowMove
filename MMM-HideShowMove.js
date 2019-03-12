@@ -1,6 +1,6 @@
 'use strict';
 /**
- * @file MMM-SnipsHideShow.js
+ * @file MMM-HideShowMove.js
  * @author Max Bachmann <https://github.com/maxbachmann>
  * @version 0.1
  * @see https://github.com/maxbachmann-magicmirror2/MMM-SnipsHideShow.git
@@ -36,14 +36,14 @@
  */
 
 /**
- * @module MMM-SnipsHideShow
+ * @module MMM-HideShowMove
  * @description moduel that hides, shows and moves modules
  *
  * @requires external:Module
  * @requires external:Log
  * @requires external:MM
  */
-Module.register('MMM-SnipsHideShow', {
+Module.register('MMM-HideShowMove', {
 
   /**
    * @member {Object} defaults - Defines the default config values.
