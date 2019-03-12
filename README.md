@@ -25,14 +25,14 @@ modules: [
 	}
 ]
 ````
-Additionally `mqtt-mm2-gateway` needs to configured. Therefor configure it to subscribe the topic `external/MagicMirror2/HideShowMove/#`. A config could look like this:
+Additionally `mqtt-mm2-gateway` needs to configured. Therefore configure it to subscribe the topic `external/MagicMirror2/HideShowMove/#`. A example config could look like this:
 ````javascript
 modules: [
 	{
 		module: 'mqtt-mm2-gateway',
 		config: {
 			host: "localhost",	// hostname (required parameter)
-			port: 8883,
+			port: 1883,		// would not have to be specified since 1883 is the default aswell
 			username: "user",	// this is a example DON´T use this password and username outside a test environment
 			password: "password",
 			topics: [
@@ -43,6 +43,7 @@ modules: [
 	}
 ]
 ````
+In this example the broker runs on the same host as the gateway and on the default port 1883. It uses a username and password, so setting username and password in the gateway is not required when no username and password are set for the broker.
 For a deeper explanation on the config of the `mqtt-mm2-gateway` read [this](https://github.com/maxbachmann-magicmirror2/mqtt-mm2-gateway) description
 
 ## Configuration options
