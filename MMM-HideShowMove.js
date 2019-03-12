@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 /**
  * @file MMM-HideShowMove.js
  * @author Max Bachmann <https://github.com/maxbachmann>
@@ -43,7 +43,7 @@
  * @requires external:Log
  * @requires external:MM
  */
-Module.register('MMM-HideShowMove', {
+Module.register("MMM-HideShowMove", {
 
   /**
    * @member {Object} defaults - Defines the default config values.
@@ -111,7 +111,7 @@ Module.register('MMM-HideShowMove', {
   },
 
   start() {
-    Log.info('Starting module: ' + this.name);
+    Log.info("Starting module: " + this.name);
     this.loaded = true;
   },
 
@@ -120,11 +120,11 @@ Module.register('MMM-HideShowMove', {
    * @description Hide modules from the screen
    * @override
    */
-  HideModule(payload){
+  hideModule(payload){
     const data = JSON.parse(payload.toString());
     const modulename = this.moduleNames[data.module.toString()];
 
-    if (modulename === 'ALL'){
+    if (modulename === "ALL"){
       MM.getModules().enumerate((module) => {
         module.hide();
       });
@@ -142,7 +142,7 @@ Module.register('MMM-HideShowMove', {
    * @description Show modules on the screen
    * @override
    */
-  ShowModule(payload){
+  showModule(payload){
     const data = JSON.parse(payload.toString());
     const modulename = this.moduleNames[data.module.toString()];
 
@@ -168,17 +168,17 @@ Module.register('MMM-HideShowMove', {
    * @description Move modules on the screen
    * @override
    */
-  MoveModule(payload){
+  moveModule(payload){
     const data = JSON.parse(payload.toString());
     const modulename = this.moduleNames[data.module.toString()];
     const targetRegion = data.position.toString();
     
     MM.getModules().enumerate((module) => {
       if (module.name === modulename) {
-	      const instance = document.getElementById(module.identifier);
-	      const region = document.querySelector(`div.region.${targetRegion} div.container`);
-        region.insertBefore(instance, region.childNodes[0])
-        region.style.display = 'block';
+        const instance = document.getElementById(module.identifier);
+	const region = document.querySelector(`div.region.${targetRegion} div.container`);
+        region.insertBefore(instance, region.childNodes[0]);
+        region.style.display = "block";
       }
     });
   },
@@ -192,20 +192,20 @@ Module.register('MMM-HideShowMove', {
    * @param {*} payload - Detailed payload of the notification.
    */
   NotificationReceived(notification, payload) {
-    const topic = 'external/MagicMirror2/HideShowMove';
-    const hideTopic = topic + 'MM_Hide';
-    const showTopic = topic + 'MM_Show';
-    const moveTopic = topic + 'MM_Move';
+    const topic = "external/MagicMirror2/HideShowMove";
+    const hideTopic = topic + "MM_Hide";
+    const showTopic = topic + "MM_Show";
+    const moveTopic = topic + "MM_Move";
 
     switch(notification) {
       case hideTopic:
-        HideModule(payload);
+        hideModule(payload);
         break;
       case showTopic:
-        ShowModule(payload);
+        showModule(payload);
         break;
       case moveTopic:
-        MoveModule(payload);
+        moveModule(payload);
         break;
       default:
         break;
