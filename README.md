@@ -13,7 +13,6 @@ To work this module requires the module Snips-MM2-Bridge and the offline Voice R
 5.  The app you need to add is called `MM2-HideShowMove` (more information about it can be found [here](https://gitlab.com/CaptnsTech/Snips-MagicMirror2))
 
 ## Using the module
-
 To use this module, add this to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
@@ -27,20 +26,18 @@ modules: [
 ````
 
 ## Configuration options
-
 The following options can be configured:
 
-| Option      | Description  |
-|-------------|---------------------------------------------------|
-| `PAGEONE`   | modules to show on the first Page **See:** Pages  |
-| `PAGETWO`   | modules to show on the second Page **See:** Pages |
-| `PAGETHREE` | modules to show on the third Page **See:** Pages  |
-| `PAGEFOUR`  | modules to show on the fourth Page **See:** Pages |
-| `PAGEFIVE`  | modules to show on the fifth Page **See:** Pages  |
-| `PAGESIX`   | modules to show on the Page sixth **See:** Pages  |
+| option      | description                                                 |
+|-------------|-------------------------------------------------------------|
+| `PAGEONE`   | modules to show on the first Page **See:** [Pages](#pages)  |
+| `PAGETWO`   | modules to show on the second Page **See:** [Pages](#pages) |
+| `PAGETHREE` | modules to show on the third Page **See:** [Pages](#pages)  |
+| `PAGEFOUR`  | modules to show on the fourth Page **See:** [Pages](#pages) |
+| `PAGEFIVE`  | modules to show on the fifth Page **See:** [Pages](#pages)  |
+| `PAGESIX`   | modules to show on the fixth Page **See:** [Pages](#pages)  |
 
-## PAGES
-
+## Pages
 Ah list of the modulenames of the modules that get shown on the Page. You find those modulenames in the `config.js` in the format `module : <modulename>`.
 So the command for the config is 
 ```javascript
@@ -48,7 +45,6 @@ So the command for the config is
 ```
 
 ## moduleNames
-
 An object with the modules that you want to react on a command. The modulenames for those modules you can find in the `config.js` in the format `module : <modulename>`. Then simply change the `moduleNames object` in `MMM-SnipsHideShow.js`
 The Format is 
 ```javascript
@@ -65,7 +61,6 @@ The Format is
 ```
 
 ## Contributing Guidelines
-
 Contributions of all kinds are welcome, not only in the form of code but also with regards bug reports and documentation.
 
 Please keep the following in mind:
