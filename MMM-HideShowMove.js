@@ -192,7 +192,7 @@ Module.register("MMM-HideShowMove", {
    * @param {*} payload - Detailed payload of the notification.
    */
   NotificationReceived(notification, payload) {
-    const topic = "external/MagicMirror2/HideShowMove";
+    const topic = "external/MagicMirror2/HideShowMove/";
     const hideTopic = topic + "MM_Hide";
     const showTopic = topic + "MM_Show";
     const moveTopic = topic + "MM_Move";
