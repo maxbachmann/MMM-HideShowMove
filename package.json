@@ -1,8 +1,8 @@
 {
-  "name": "mmm-mqtt",
-  "version": "0.1.1",
-  "description": "Snips Voice Recognition for MagicMirror (commands HIDE/SHOW/MOVE",
-  "main": "index.js",
+  "name": "MMM-HideShowMove",
+  "version": "0.1.0",
+  "description": "Hide, Show and Move modules with the snips voice recognition",
+  "main": "MMM-HodeShowMove.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,15 +12,13 @@
   },
   "keywords": [
     "MagicMirror",
-    "Snips-HideShowMove"
+    "MMM-HideShowMove"
   ],
   "author": "Max Bachmann",
-  "license": "MIT",
+  "license": "GNU General Public License v3",
   "bugs": {
     "url": ""
   },
   "homepage": "",
-  "dependencies": {
-    "mqtt": "^1.10.0"
-  }
+  "dependencies": {}
 }
