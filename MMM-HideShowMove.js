@@ -199,13 +199,13 @@ Module.register("MMM-HideShowMove", {
 
     switch(notification) {
       case hideTopic:
-        hideModule(payload);
+        this.hideModule(payload);
         break;
       case showTopic:
-        showModule(payload);
+        this.showModule(payload);
         break;
       case moveTopic:
-        moveModule(payload);
+        this.moveModule(payload);
         break;
       default:
         break;
