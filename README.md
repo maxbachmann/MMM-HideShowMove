@@ -5,14 +5,12 @@ To work this module requires the module Snips-MM2-Bridge and the offline Voice R
 
 [demonstration video german](https://www.youtube.com/watch?v=09XWlDiJ6dM)
 
-
 ## Installation
-1. Follow the instructions for [Snips-MM2-Bridge](https://gitlab.com/CaptnsTech/snips-mm2-bridge)
-2. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/maxbachmann/MMM-SnipsHideShow.git`. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
-3. Execute `npm install` to install the node dependencies.
-5. The installation of the App inside Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/install-an-assistant). 
-6. The app you need to add is called `MM2-HideShowMove` (more information about it can be found [here](https://gitlab.com/CaptnsTech/Snips-MagicMirror2))
-
+1.  Follow the instructions for [Snips-MM2-Bridge](https://gitlab.com/CaptnsTech/snips-mm2-bridge)
+2.  Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/maxbachmann/MMM-SnipsHideShow.git`. A new folder will appear, likely called `MMM-SnipsHideShow`.  Navigate into it.
+3.  Execute `npm install` to install the node dependencies.
+4.  The installation of the App inside Snips can be done according to this [explanation](https://snips.gitbook.io/getting-started/install-an-assistant). 
+5.  The app you need to add is called `MM2-HideShowMove` (more information about it can be found [here](https://gitlab.com/CaptnsTech/Snips-MagicMirror2))
 
 ## Using the module
 
@@ -32,14 +30,14 @@ modules: [
 
 The following options can be configured:
 
-| Option  | Description  |
-|---|---|
-| `PAGEONE`  | modules to show on the first Page **See:** Pages |
-| `PAGETWO`  | modules to show on the second Page **See:** Pages |
-| `PAGETHREE`  | modules to show on the third Page **See:** Pages |
+| Option      | Description  |
+|-------------|---------------------------------------------------|
+| `PAGEONE`   | modules to show on the first Page **See:** Pages  |
+| `PAGETWO`   | modules to show on the second Page **See:** Pages |
+| `PAGETHREE` | modules to show on the third Page **See:** Pages  |
 | `PAGEFOUR`  | modules to show on the fourth Page **See:** Pages |
-| `PAGEFIVE`  | modules to show on the fifth Page **See:** Pages |
-| `PAGESIX`  | modules to show on the Page sixth **See:** Pages |
+| `PAGEFIVE`  | modules to show on the fifth Page **See:** Pages  |
+| `PAGESIX`   | modules to show on the Page sixth **See:** Pages  |
 
 ## PAGES
 
@@ -72,14 +70,11 @@ Contributions of all kinds are welcome, not only in the form of code but also wi
 
 Please keep the following in mind:
 
-- **Bug Reports**:  Make sure you're running the latest version. If the issue(s) still persist: please open a clearly documented issue with a clear title.
-- **Minor Bug Fixes**: Please send a pull request with a clear explanation of the issue or a link to the issue it solves.
-- **Major Bug Fixes**: please discuss your approach in an issue before you start to alter a big part of the code.
-- **New Features**: please please discuss in a issue before you start to alter a big part of the code. Without discussion upfront, the pull request will not be accepted / merged.
-
+-   **Bug Reports**:  Make sure you're running the latest version. If the issue(s) still persist: please open a clearly documented issue with a clear title.
+-   **Minor Bug Fixes**: Please send a pull request with a clear explanation of the issue or a link to the issue it solves.
+-   **Major Bug Fixes**: please discuss your approach in an issue before you start to alter a big part of the code.
+-   **New Features**: please please discuss in a issue before you start to alter a big part of the code. Without discussion upfront, the pull request will not be accepted / merged.
 
 ## Planned
-1. add more supported modules
-2. english Version
-
-
+1.  add more supported modules
+2.  english Version
