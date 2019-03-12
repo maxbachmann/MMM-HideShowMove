@@ -15,10 +15,10 @@
     "MMM-HideShowMove"
   ],
   "author": "Max Bachmann",
-  "license": "GNU General Public License v3",
+  "license": "GNU General Public License v3.0",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove",
   "dependencies": {}
 }
