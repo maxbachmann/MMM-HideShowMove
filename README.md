@@ -64,7 +64,6 @@ So the command for the config is
 	PAGE<pagenumber>: [<modulename 1>, ... , <modulename n>, ],
 ```
 
-
 ## Module Names
 An object with the modules that you want to react on a command. The modulenames for those modules you can find in the `config.js` in the format `module : <modulename>` (e.g. "MMM-HideShowMove" for this module). Then simply change the `moduleNames object` in `MMM-HideShowMove.js`
 The Format is 
