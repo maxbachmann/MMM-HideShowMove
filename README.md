@@ -1,5 +1,6 @@
-# MMM-SnipsHideShow
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86d29e99f3154b71951c97b4f53fe782)](https://www.codacy.com/app/MagicMirror2/MMM-HideShowMove?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=maxbachmann-magicmirror2/MMM-HideShowMove&amp;utm_campaign=Badge_Grade)
 
+# MMM-SnipsHideShow
 This is an extension for the [MagicMirror²](https://github.com/MichMich/MagicMirror).  It provides the ability to use it with the offline voice recognition Snips to Hide, Show and Move modules
 To work this module requires the module [mqtt-mm2-gateway](https://github.com/maxbachmann-magicmirror2/mqtt-mm2-gateway) and the offline Voice Recognition [Snips](https://snips.ai) with the [MM2-HideShowMove App](https://console.snips.ai/store/de/skill_kzPyY9z80KY) and is currently only avaible in German. A explanation on how to install Snips and the App is included in the installation Guide.
 
