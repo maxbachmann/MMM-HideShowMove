@@ -20,5 +20,7 @@
     "url": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove/issues"
   },
   "homepage": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove",
-  "dependencies": {}
+  "dependencies": {
+      "hermes-javascript": "^0.1.0"
+    }
 }
