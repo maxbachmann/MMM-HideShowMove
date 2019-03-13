@@ -74,7 +74,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Sets mode to initialising.
    * @override
    */
-  start: function() {
+  start() {
     Log.info("Starting module: " + this.name);
     this.startHermes();
     this.loaded = true;
@@ -87,7 +87,7 @@ Module.register("mqtt-mm2-gateway", {
    *
    * @returns bool is Username set 
    */
-  usernameIsSet: function(){
+  usernameIsSet(){
     return this.config.username !== "";
   },
 
@@ -98,7 +98,7 @@ Module.register("mqtt-mm2-gateway", {
    * and password
    * @override
    */
-  startHermes: function(){
+  startHermes(){
     this.options.host = this.config.host;
     this.options.port = this.config.port;
   
@@ -114,7 +114,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Hide modules from the screen
    * @override
    */
-  hideModule: function(payload){
+  hideModule(payload){
     const modulename = payload.modulename;
 
     if (modulename === "ALL"){
@@ -135,7 +135,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Show modules on the screen
    * @override
    */
-  showModule: function(payload){
+  showModule(payload){
     const modulename = payload.modulename;
 
     if (modulename.includes("PAGE")){
@@ -160,7 +160,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Move modules on the screen
    * @override
    */
-  moveModule: function(payload){
+  moveModule(payload){
     const modulename = payload.modulename;
     const targetRegion = payload.targetRegion;
     
@@ -182,7 +182,7 @@ Module.register("mqtt-mm2-gateway", {
    * @param {string} notification - Notification name
    * @param {*} payload - Detailed payload of the notification.
    */
-  socketNotificationReceived: function(notification, payload) {
+  socketNotificationReceived(notification, payload) {
 
     switch(notification) {
       case "HIDE":
