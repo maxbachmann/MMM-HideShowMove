@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove",
   "dependencies": {
-      "hermes-javascript": "^0.1.0"
+      "hermes-javascript": "^0.3.0"
     }
 }
