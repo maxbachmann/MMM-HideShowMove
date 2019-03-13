@@ -66,7 +66,6 @@ module.exports = NodeHelper.create({
       }
     },
 
-
     startHermes: function(config) {
       this.maxRetryCount = config.maxRetryCount;
       const hermesOptions = {
@@ -77,7 +76,7 @@ module.exports = NodeHelper.create({
       if ("username" in config && "password" in config){
         hermesOptions.username = config.username;
         hermesOptions.password = config.password;
-      };
+      }
 
       withHermes((hermes, done) => this.hermesDialog, hermesOptions);
     },
