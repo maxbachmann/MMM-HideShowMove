@@ -1,4 +1,5 @@
 "use strict";
+/*jshint esversion: 6 */ 
 /**
  * @file mqtt-mm2-gateway.js
  * @author Max Bachmann <https://github.com/maxbachmann>
