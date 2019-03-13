@@ -98,12 +98,12 @@ Module.register("mqtt-mm2-gateway", {
    * @override
    */
   startHermes(){
-    options.host = this.config.host;
-    options.port = this.config.port;
+    this.options.host = this.config.host;
+    this.options.port = this.config.port;
   
     if (this.usernameIsSet()){
-        options.username = this.config.username; 
-        options.password = this.config.password;
+        this.options.username = this.config.username; 
+        this.options.password = this.config.password;
     }
     this.sendSocketNotification("HERMES_INIT", options);
   },
