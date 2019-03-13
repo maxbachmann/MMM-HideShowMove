@@ -15,6 +15,7 @@ To work this module requires the module [mqtt-mm2-gateway](https://github.com/ma
 
 ## Using the module
 To use this module, add this to the modules array in the `config/config.js` file:
+
 ````javascript
 modules: [
 	{
