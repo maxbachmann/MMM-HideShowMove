@@ -56,7 +56,7 @@ Module.register("mqtt-mm2-gateway", {
    * @property {string} password - password of the MQTT broker
    */
   defaults: {
-    host: 'localhost',
+    host: "localhost",
     port: 1883,
     username: "",
     password: ""
@@ -117,7 +117,7 @@ Module.register("mqtt-mm2-gateway", {
   hideModule: function(payload){
     const modulename = payload.modulename;
 
-    if (modulename === 'ALL'){
+    if (modulename === "ALL"){
       MM.getModules().enumerate((module) => {
         module.hide();
       });
@@ -166,10 +166,10 @@ Module.register("mqtt-mm2-gateway", {
     
     MM.getModules().enumerate((module) => {
       if (module.name === modulename) {
-	      const instance = document.getElementById(module.identifier);
-	      const region = document.querySelector(`div.region.${targetRegion} div.container`);
+	const instance = document.getElementById(module.identifier);
+	const region = document.querySelector(`div.region.${targetRegion} div.container`);
         region.insertBefore(instance, region.childNodes[0]);
-        region.style.display = 'block';
+        region.style.display = "block";
       }
     });
   },
