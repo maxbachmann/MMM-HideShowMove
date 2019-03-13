@@ -106,7 +106,7 @@ Module.register("mqtt-mm2-gateway", {
         this.options.username = this.config.username; 
         this.options.password = this.config.password;
     }
-    this.sendSocketNotification("HERMES_INIT", options);
+    this.sendSocketNotification("HERMES_INIT", this.options);
   },
 
     /**
