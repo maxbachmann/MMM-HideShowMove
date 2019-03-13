@@ -57,7 +57,6 @@ Module.register("mqtt-mm2-gateway", {
   defaults: {
     host: 'localhost',
     port: 1883,
-    topics: [],
     username: "",
     password: ""
   },
@@ -67,10 +66,7 @@ Module.register("mqtt-mm2-gateway", {
    * @property {bool} clean - when false receive messages while offline
    * @property {string} clientID - clientID so it´s the same on reconnect
    */
-  options: {
-    clean: false,
-    clientID: "mqttjs_" + Math.random().toString(16).substr(2, 8)
-  },
+  options: {},
 
   /**
    * @function start
