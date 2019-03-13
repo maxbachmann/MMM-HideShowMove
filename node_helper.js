@@ -4,16 +4,16 @@ const { withHermes } = require("hermes-javascript");
 
 module.exports = NodeHelper.create({
 
-    start: function () {
-        console.log(this.name + ': Starting node helper');
+    start() {
+        console.log(this.name + ": Starting node helper");
         this.loaded = false;
     },
 
     hideModule: function(msg, flow) {
-      console.log('Intent hide module received');
-      const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
+      console.log("Intent hide module received");
+      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
       if (modulename != null){
-        self.sendSocketNotification("HIDE", {modulename: modulename});
+        this.sendSocketNotification("HIDE", {modulename});
         return "Ich werde das Modul ausblenden";
       } else {
         return "Es tut mir Leid aber ich habe dich leider nicht verstanden.";
@@ -21,10 +21,10 @@ module.exports = NodeHelper.create({
     },
 
     showModule: function(msg, flow) {
-      console.log('Intent show module received');
-      const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
+      console.log("Intent show module received");
+      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
       if (modulename != null){
-        self.sendSocketNotification("SHOW", {modulename: modulename});
+        this.sendSocketNotification("SHOW", {modulename});
         return "Ich werde das Modul einblenden";
       } else {
         return "Es tut mir Leid aber ich habe dich leider nicht verstanden.";
@@ -32,18 +32,18 @@ module.exports = NodeHelper.create({
     },
 
     moveModule: function(msg, flow) {
-      console.log('Intent move module received');
-      const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
-      const targetRegion = msg.slots.find(slot => slot.slotName === 'POSITION');
+      console.log("Intent move module received");
+      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
+      const targetRegion = msg.slots.find(slot => slot.slotName === "POSITION");
       if (modulename != null && targetRegion != null){
-        self.sendSocketNotification("HIDE", {modulename: modulename, targetRegion: targetRegion});
+        this.sendSocketNotification("HIDE", {modulename, targetRegion});
         return "Ich werde das Modul bewegen";
       } else {
         return "Es tut mir Leid aber ich habe dich leider nicht verstanden.";
       }
     },
 
-    hermesDialog: function(hermes, done){
+    hermesDialog(hermes, done){
       try {
         const dialog = hermes.dialog();
 
@@ -67,7 +67,7 @@ module.exports = NodeHelper.create({
       }
     },
 
-    startHermes: function(config) {
+    startHermes(config) {
       this.maxRetryCount = config.maxRetryCount;
       const hermesOptions = {
         address: config.host + ":" + config.port,
@@ -82,9 +82,9 @@ module.exports = NodeHelper.create({
       withHermes((hermes, done) => this.hermesDialog, hermesOptions);
     },
 
-    socketNotificationReceived: function (notification, payload) {
-        console.log(this.name + ': Socket notification received: ', notification, ': ', payload);
-        if (notification === 'HERMES_CONFIG') {
+    socketNotificationReceived(notification, payload) {
+        console.log(this.name + ": Socket notification received: ", notification, ": ", payload);
+        if (notification === "HERMES_CONFIG") {
             this.startHermes(payload);
             this.loaded = true;
         }
