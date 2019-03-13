@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */ 
 var NodeHelper = require("node_helper");
 const { withHermes } = require("hermes-javascript");
 
