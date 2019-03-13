@@ -86,7 +86,7 @@ Module.register("mqtt-mm2-gateway", {
    *
    * @returns bool is Username set 
    */
-  username_is_set(){
+  usernameIsSet(){
     return this.config.username !== "";
   },
 
@@ -101,7 +101,7 @@ Module.register("mqtt-mm2-gateway", {
     options.host = this.config.host;
     options.port = this.config.port;
   
-    if (this.username_is_set()){
+    if (this.usernameIsSet()){
         options.username = this.config.username; 
         options.password = this.config.password;
     }
@@ -113,7 +113,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Hide modules from the screen
    * @override
    */
-  HideModule(payload){
+  hideModule(payload){
     const modulename = payload.modulename;
 
     if (modulename === 'ALL'){
@@ -134,7 +134,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Show modules on the screen
    * @override
    */
-  ShowModule(payload){
+  showModule(payload){
     const modulename = payload.modulename;
 
     if (modulename.includes("PAGE")){
@@ -159,7 +159,7 @@ Module.register("mqtt-mm2-gateway", {
    * @description Move modules on the screen
    * @override
    */
-  MoveModule(payload){
+  moveModule(payload){
     const modulename = payload.modulename;
     const targetRegion = payload.targetRegion;
     
@@ -185,13 +185,13 @@ Module.register("mqtt-mm2-gateway", {
 
     switch(notification) {
       case "HIDE":
-        HideModule(payload);
+        this.hideModule(payload);
         break;
       case "SHOW":
-        ShowModule(payload);
+        this.showModule(payload);
         break;
       case "MOVE":
-        MoveModule(payload);
+        this.moveModule(payload);
         break;
       default:
         break;
