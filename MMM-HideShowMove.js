@@ -1,9 +1,9 @@
 "use strict";
 /**
- * @file MMM-HideShowMove.js
+ * @file mqtt-mm2-gateway.js
  * @author Max Bachmann <https://github.com/maxbachmann>
  * @version 0.1
- * @see https://github.com/maxbachmann-magicmirror2/MMM-SnipsHideShow.git
+ * @see https://github.com/maxbachmann-magicmirror2/mqtt-mm2-gateway.git
  */
 
 /**
@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU General Public License along with 
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
-/* global Module */
+
+/* global Module Log MM */
 
 /**
  * @external Module
@@ -36,95 +37,90 @@
  */
 
 /**
- * @module MMM-HideShowMove
- * @description moduel that hides, shows and moves modules
+ * @module mqtt-mm2-gateway
+ * @description Gateway for mqtt and mm2 messages
  *
  * @requires external:Module
  * @requires external:Log
  * @requires external:MM
  */
-Module.register("MMM-HideShowMove", {
+Module.register("mqtt-mm2-gateway", {
 
   /**
    * @member {Object} defaults - Defines the default config values.
-   * @property {array of strings} PAGEONE - modules to show on page 1
-   * @property {array of strings} PAGETWO - modules to show on page 2
-   * @property {array of strings} PAGETHREE - modules to show on page 3
-   * @property {array of strings} PAGEFOUR - modules to show on page 4
-   * @property {array of strings} PAGEFIVE - modules to show on page 5
-   * @property {array of strings} PAGESIX - modules to show on page 6
-    */
+   * @property {string} host - host of the MQTT broker (domain or IPv4)
+   * @property {int} port - Port of the MQTT broker
+   * @property {array of strings} topics - Topics to subscribe
+   * @property {string} username - username of the MQTT broker
+   * @property {string} password - password of the MQTT broker
+   */
   defaults: {
-    PAGEONE: ["clock", "MMM-EyeCandy", "compliments", "calendar","newsfeed"],
-    PAGETWO: [],
-    PAGETHREE: [],
-    PAGEFOUR: [],
-    PAGEFIVE: [],
-    PAGESIX: [],
+    host: 'localhost',
+    port: 1883,
+    topics: [],
+    username: "",
+    password: ""
   },
 
-
-  moduleNames: {
-    "ALL"         : "ALL",
-    "PAGEONE"     : "PAGEONE",
-    "PAGETWO"     : "PAGETWO",
-    "PAGETHREE"   : "PAGETHREE",
-    "PAGEFOUR"    : "PAGEFOUR",
-    "PAGEFIVE"    : "PAGEFIVE",
-    "PAGESIX"     : "PAGESIX",
-    "ALARM"       : "MMM-AlarmClock",
-    "BACKGROUND"  : "MMM-EasyBack",
-    "CALENDAR"    : "calendar",
-    "CARDS"       : "MMM-CARDS",
-    "CENSUS"      : "MMM-Census",
-    "CLOCK"       : "clock",
-    "COCKTAILS"   : "MMM-Cocktails",
-    "COMPLIMENTS" : "compliments",
-    "COWBOY"      : "MMM-NOAA",
-    "DARWIN"      : "MMM-EOL",
-    "EARTH"       : "MMM-EARTH",
-    "EVENTS"      : "MMM-Events",
-    "EYECANDY"    : "MMM-EyeCandy",
-    "FAX"         : "MMM-rfacts",
-    "FORTUNE"     : "MMM-Fortune",
-    "JEOPARDY"    : "MMM-JEOPARDY",
-    "LICE"        : "MMM-LICE",
-    "LOCATION"    : "MMM-URHere",
-    "LOTTERY"     : "MMM-Lottery",
-    "MOON"        : "MMM-Lunartic",
-    "NASA"        : "MMM-NASA",
-    "NEO"         : "MMM-NEO",
-    "NEWS"        : "newsfeed",
-    "PETFINDER"   : "MMM-PetFinder",
-    "PHONE"       : "MMM-FMI",
-    "PICTURES"    : "MMM-EasyPix",
-    "PILOTS"      : "MMM-PilotWX",
-    "SHIPPING"    : "MMM-AfterShip",
-    "STATION"     : "MMM-ISS",
-    "STATS"       : "MMM-PC-Stats",
-    "SUDOKU"      : "MMM-Sudoku",
-    "SUNRISE"     : "MMM-SunRiseSet",
-    "TIDES"       : "MMM-SORT",
-    "TIMER"       : "MMM-EventHorizon",
-    "TRIVIA"      : "MMM-ATM",
-    "WEATHER"     : "weatherforecast"
+  /**
+   * @member {Object} options - MQTT options
+   * @property {bool} clean - when false receive messages while offline
+   * @property {string} clientID - clientID so it´s the same on reconnect
+   */
+  options: {
+    clean: false,
+    clientID: "mqttjs_" + Math.random().toString(16).substr(2, 8)
   },
 
+  /**
+   * @function start
+   * @description Sets mode to initialising.
+   * @override
+   */
   start() {
     Log.info("Starting module: " + this.name);
+    this.startHermes();
     this.loaded = true;
   },
 
   /**
+   * @function username_is_set
+   * @description check wether username is set in the config
+   * @override
+   *
+   * @returns bool is Username set 
+   */
+  username_is_set(){
+    return this.config.username !== "";
+  },
+
+  /**
+   * @function start_MQTT_client
+   * @description send the node_helper a message to start the mqtt client,
+   * with the config options host, port, topics to subsribe to, username
+   * and password
+   * @override
+   */
+  startHermes(){
+    options.host = this.config.host;
+    options.port = this.config.port;
+  
+    if (this.username_is_set()){
+        options.username = this.config.username; 
+        options.password = this.config.password;
+    }
+    this.sendSocketNotification("HERMES_INIT", options);
+  },
+
+    /**
    * @function HideModule
    * @description Hide modules from the screen
    * @override
    */
-  hideModule(payload){
-    const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
+  HideModule(payload){
+    const modulename = payload.modulename;
 
-    if (modulename === "ALL"){
+    if (modulename === 'ALL'){
       MM.getModules().enumerate((module) => {
         module.hide();
       });
@@ -142,9 +138,8 @@ Module.register("MMM-HideShowMove", {
    * @description Show modules on the screen
    * @override
    */
-  showModule(payload){
-    const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
+  ShowModule(payload){
+    const modulename = payload.modulename;
 
     if (modulename.includes("PAGE")){
       MM.getModules().enumerate((module) => {
@@ -168,44 +163,39 @@ Module.register("MMM-HideShowMove", {
    * @description Move modules on the screen
    * @override
    */
-  moveModule(payload){
-    const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
-    const targetRegion = data.position.toString();
+  MoveModule(payload){
+    const modulename = payload.modulename;
+    const targetRegion = payload.targetRegion;
     
     MM.getModules().enumerate((module) => {
       if (module.name === modulename) {
-        const instance = document.getElementById(module.identifier);
-	const region = document.querySelector(`div.region.${targetRegion} div.container`);
-        region.insertBefore(instance, region.childNodes[0]);
-        region.style.display = "block";
+	      const instance = document.getElementById(module.identifier);
+	      const region = document.querySelector(`div.region.${targetRegion} div.container`);
+        region.insertBefore(instance, region.childNodes[0])
+        region.style.display = 'block';
       }
     });
   },
 
   /**
    * @function notificationReceived
-   * @description Handles incoming broadcasts from other modules or the MagicMirror core.
+   * @description Handles incoming broadcasts from node_helper
    * @override
    *
    * @param {string} notification - Notification name
    * @param {*} payload - Detailed payload of the notification.
    */
-  notificationReceived(notification, payload) {
-    const topic = "external/MagicMirror2/HideShowMove/";
-    const hideTopic = topic + "MM_Hide";
-    const showTopic = topic + "MM_Show";
-    const moveTopic = topic + "MM_Move";
+  socketNotificationReceived(notification, payload) {
 
     switch(notification) {
-      case hideTopic:
-        this.hideModule(payload);
+      case "HIDE":
+        HideModule(payload);
         break;
-      case showTopic:
-        this.showModule(payload);
+      case "SHOW":
+        ShowModule(payload);
         break;
-      case moveTopic:
-        this.moveModule(payload);
+      case "MOVE":
+        MoveModule(payload);
         break;
       default:
         break;
