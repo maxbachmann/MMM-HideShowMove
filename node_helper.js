@@ -9,9 +9,9 @@ module.exports = NodeHelper.create({
         this.loaded = false;
     },
 
-    hideModule: function(msg, flow) {
+    hideModule(msg, flow) {
       console.log("Intent hide module received");
-      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
+      const modulename = msg.slots.find((slot) => slot.slotName === "MODULE");
       if (modulename != null){
         this.sendSocketNotification("HIDE", {modulename});
         return "Ich werde das Modul ausblenden";
@@ -20,9 +20,9 @@ module.exports = NodeHelper.create({
       }
     },
 
-    showModule: function(msg, flow) {
+    showModule(msg, flow) {
       console.log("Intent show module received");
-      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
+      const modulename = msg.slots.find((slot) => slot.slotName === "MODULE");
       if (modulename != null){
         this.sendSocketNotification("SHOW", {modulename});
         return "Ich werde das Modul einblenden";
@@ -31,10 +31,10 @@ module.exports = NodeHelper.create({
       }
     },
 
-    moveModule: function(msg, flow) {
+    moveModule(msg, flow) {
       console.log("Intent move module received");
-      const modulename = msg.slots.find(slot => slot.slotName === "MODULE");
-      const targetRegion = msg.slots.find(slot => slot.slotName === "POSITION");
+      const modulename = msg.slots.find((slot) => slot.slotName === "MODULE");
+      const targetRegion = msg.slots.find((slot) => slot.slotName === "POSITION");
       if (modulename != null && targetRegion != null){
         this.sendSocketNotification("HIDE", {modulename, targetRegion});
         return "Ich werde das Modul bewegen";
