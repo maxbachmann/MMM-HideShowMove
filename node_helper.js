@@ -9,6 +9,7 @@ module.exports = NodeHelper.create({
     },
 
     hideModule: function(msg, flow) {
+      console.log('Intent hide module received');
       const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
       if (modulename != null){
         self.sendSocketNotification("HIDE", {modulename: modulename});
@@ -19,6 +20,7 @@ module.exports = NodeHelper.create({
     },
 
     showModule: function(msg, flow) {
+      console.log('Intent show module received');
       const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
       if (modulename != null){
         self.sendSocketNotification("SHOW", {modulename: modulename});
@@ -29,6 +31,7 @@ module.exports = NodeHelper.create({
     },
 
     moveModule: function(msg, flow) {
+      console.log('Intent move module received');
       const modulename = msg.slots.find(slot => slot.slotName === 'MODULE');
       const targetRegion = msg.slots.find(slot => slot.slotName === 'POSITION');
       if (modulename != null && targetRegion != null){
