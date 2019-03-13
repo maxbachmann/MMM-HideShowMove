@@ -168,7 +168,7 @@ Module.register("mqtt-mm2-gateway", {
       if (module.name === modulename) {
 	      const instance = document.getElementById(module.identifier);
 	      const region = document.querySelector(`div.region.${targetRegion} div.container`);
-        region.insertBefore(instance, region.childNodes[0])
+        region.insertBefore(instance, region.childNodes[0]);
         region.style.display = 'block';
       }
     });
