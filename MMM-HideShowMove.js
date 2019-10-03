@@ -148,7 +148,7 @@ Module.register("MMM-HideShowMove", {
 
     if (modulename.includes("PAGE")){
       MM.getModules().enumerate((module) => {
-        if (this.config[modulename.toString()].indexOf(module) > -1) {
+        if (this.config[modulename.toString()].indexOf(module.name) > -1) {
           module.show();
         }else{
           module.hide();
