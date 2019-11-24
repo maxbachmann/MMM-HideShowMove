@@ -61,6 +61,7 @@ Module.register("MMM-HideShowMove", {
     PAGEFOUR: [],
     PAGEFIVE: [],
     PAGESIX: [],
+    Startpage : "",
   },
 
 
@@ -108,6 +109,7 @@ Module.register("MMM-HideShowMove", {
     "TIMER"       : "MMM-EventHorizon",
     "TRIVIA"      : "MMM-ATM",
     "WEATHER"     : "weatherforecast"
+    
   },
 
   start() {
@@ -207,6 +209,12 @@ Module.register("MMM-HideShowMove", {
       case moveTopic:
         this.moveModule(payload);
         break;
+      case 'DOM_OBJECTS_CREATED':
+        if(this.config.Startpage != ""){
+            MM.getModules().exceptWithClass(this.config[this.config.Startpage]).exceptWithClass(this.name).enumerate(module => module.hide());
+        }
+        break;
+        
       default:
         break;
     }
