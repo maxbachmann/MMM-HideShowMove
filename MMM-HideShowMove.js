@@ -55,7 +55,7 @@ Module.register("MMM-HideShowMove", {
    * @property {array of strings} PAGESIX - modules to show on page 6
     */
   defaults: {
-    PAGEONE: ["clock", "MMM-EyeCandy", "compliments", "calendar","newsfeed"],
+    PAGEONE: [],
     PAGETWO: [],
     PAGETHREE: [],
     PAGEFOUR: [],
