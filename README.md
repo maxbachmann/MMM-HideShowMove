@@ -55,6 +55,7 @@ The following options can be configured:
 | `PAGEFOUR`  | modules to show on the fourth Page **See:** [Pages](#pages) |
 | `PAGEFIVE`  | modules to show on the fifth Page **See:** [Pages](#pages)  |
 | `PAGESIX`   | modules to show on the fixth Page **See:** [Pages](#pages)  |
+| `Startpage` | Page to show after starting the Mirror |
 
 ## Pages
 A list of the modulenames of the modules that get shown on the Page. You find those modulenames in the `config.js` in the format `module : <modulename>`.
