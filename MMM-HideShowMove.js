@@ -115,7 +115,7 @@ Module.register("MMM-HideShowMove", {
     this.loaded = true;
   },
 
-  /**
+    /**
    * @function HideModule
    * @description Hide modules from the screen
    * @override
@@ -125,15 +125,9 @@ Module.register("MMM-HideShowMove", {
     const modulename = this.moduleNames[data.module.toString()];
 
     if (modulename === "ALL"){
-      MM.getModules().enumerate((module) => {
-        module.hide();
-      });
+      MM.getModules().enumerate(module => module.hide());
     } else{
-      MM.getModules().enumerate((module) => {
-        if (module.name === modulename) {
-          module.hide();
-        }
-      });
+      MM.getModules().withClass(modulename).enumerate(module => module.hide());
     }
   },
 
@@ -147,19 +141,10 @@ Module.register("MMM-HideShowMove", {
     const modulename = this.moduleNames[data.module.toString()];
 
     if (modulename.includes("PAGE")){
-      MM.getModules().enumerate((module) => {
-        if (this.config[modulename.toString()].indexOf(module.name) > -1) {
-          module.show();
-        }else{
-          module.hide();
-        }
-      });
+      MM.getModules().withClass(this.config[modulename]).enumerate(module => module.show());
+      MM.getModules().exceptWithClass(this.config[modulename]).enumerate(module => module.hide());
     } else {
-      MM.getModules().enumerate((module) => {
-        if (module.name === modulename) {
-          module.show();
-        }
-      });
+      MM.getModules().withClass(modulename).enumerate(module => module.show());
     }
   },
 
@@ -173,13 +158,11 @@ Module.register("MMM-HideShowMove", {
     const modulename = this.moduleNames[data.module.toString()];
     const targetRegion = data.position.toString();
     
-    MM.getModules().enumerate((module) => {
-      if (module.name === modulename) {
-        const instance = document.getElementById(module.identifier);
-	const region = document.querySelector(`div.region.${targetRegion} div.container`);
-        region.insertBefore(instance, region.childNodes[0]);
-        region.style.display = "block";
-      }
+    MM.getModules().withClass(modulename).enumerate((module) => {
+      const instance = document.getElementById(module.identifier);
+	    const region = document.querySelector(`div.region.${targetRegion} div.container`);
+      region.insertBefore(instance, region.childNodes[0]);
+      region.style.display = "block";
     });
   },
 
