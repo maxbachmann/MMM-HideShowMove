@@ -3,7 +3,7 @@
  * @file MMM-HideShowMove.js
  * @author Max Bachmann <https://github.com/maxbachmann>
  * @version 0.1
- * @see https://github.com/maxbachmann-magicmirror2/MMM-SnipsHideShow.git
+ * @see https://github.com/project-alice-assistant/MMM-SnipsHideShow.git
  */
 
 /**
@@ -124,12 +124,12 @@ Module.register("MMM-HideShowMove", {
    */
   hideModule(payload){
     const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
+    const moduleName = this.moduleNames[data.module.toString()];
 
-    if (modulename === "ALL"){
+    if (moduleName === "ALL"){
       MM.getModules().enumerate(module => module.hide());
     } else{
-      MM.getModules().withClass(modulename).enumerate(module => module.hide());
+      MM.getModules().withClass(moduleName).enumerate(module => module.hide());
     }
   },
 
@@ -140,13 +140,13 @@ Module.register("MMM-HideShowMove", {
    */
   showModule(payload){
     const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
+    const moduleName = this.moduleNames[data.module.toString()];
 
-    if (modulename.includes("PAGE")){
-      MM.getModules().withClass(this.config[modulename]).enumerate(module => module.show());
-      MM.getModules().exceptWithClass(this.config[modulename]).enumerate(module => module.hide());
+    if (moduleName.includes("PAGE")){
+      MM.getModules().withClass(this.config[moduleName]).enumerate(module => module.show());
+      MM.getModules().exceptWithClass(this.config[moduleName]).enumerate(module => module.hide());
     } else {
-      MM.getModules().withClass(modulename).enumerate(module => module.show());
+      MM.getModules().withClass(moduleName).enumerate(module => module.show());
     }
   },
 
@@ -157,10 +157,10 @@ Module.register("MMM-HideShowMove", {
    */
   moveModule(payload){
     const data = JSON.parse(payload.toString());
-    const modulename = this.moduleNames[data.module.toString()];
+    const moduleName = this.moduleNames[data.module.toString()];
     const targetRegion = data.position.toString();
     
-    MM.getModules().withClass(modulename).enumerate((module) => {
+    MM.getModules().withClass(moduleName).enumerate((module) => {
       const instance = document.getElementById(module.identifier);
 	    const region = document.querySelector(`div.region.${targetRegion} div.container`);
       region.insertBefore(instance, region.childNodes[0]);
@@ -177,28 +177,21 @@ Module.register("MMM-HideShowMove", {
    * @param {*} payload - Detailed payload of the notification.
    */
   notificationReceived(notification, payload) {
-    const topic = "external/MagicMirror2/HideShowMove/";
-    const hideTopic = topic + "MM_Hide";
-    const showTopic = topic + "MM_Show";
-    const moveTopic = topic + "MM_Move";
+    if(notification === 'DOM_OBJECTS_CREATED' && this.config.Startpage !== ""){
+      MM.getModules().exceptWithClass(this.config[this.config.Startpage]).exceptWithClass(this.name).enumerate(module => module.hide());
+      return
+    }
 
-    switch(notification) {
-      case hideTopic:
+    eventName = notification.replace('projectalice/events/', '')
+    switch(eventName) {
+      case 'onMagicMirrorHideModule':
         this.hideModule(payload);
         break;
-      case showTopic:
+      case 'onMagicMirrorShowModule':
         this.showModule(payload);
         break;
-      case moveTopic:
+      case 'onMagicMirrorMoveModule':
         this.moveModule(payload);
-        break;
-      case 'DOM_OBJECTS_CREATED':
-        if(this.config.Startpage != ""){
-            MM.getModules().exceptWithClass(this.config[this.config.Startpage]).exceptWithClass(this.name).enumerate(module => module.hide());
-        }
-        break;
-        
-      default:
         break;
     }
   }

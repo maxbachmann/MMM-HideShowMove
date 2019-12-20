@@ -1,7 +1,7 @@
 {
   "name": "MMM-HideShowMove",
-  "version": "0.1.0",
-  "description": "Hide, Show and Move modules with the snips voice recognition",
+  "version": "0.2.0",
+  "description": "Hide, Show and Move modules with the voice recognition of ProjectAlice",
   "main": "MMM-HodeShowMove.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +17,8 @@
   "author": "Max Bachmann",
   "license": "GNU General Public License v3.0",
   "bugs": {
-    "url": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove/issues"
+    "url": "https://github.com/project-alice-assistant/MMM-HideShowMove/issues"
   },
-  "homepage": "https://github.com/maxbachmann-magicmirror2/MMM-HideShowMove",
+  "homepage": "https://github.com/project-alice-assistant/MMM-HideShowMove",
   "dependencies": {}
 }
